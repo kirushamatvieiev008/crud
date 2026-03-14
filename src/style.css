@@ -1,0 +1,61 @@
+.container {
+    /* color: #ff0000; */
+    margin: 0 auto;
+    width: 1200px;
+    outline: solid 1px #ff0000;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 40px;
+
+}
+
+img {
+    display: block;
+    width: 100%;
+    height: 400px;
+}
+
+li {
+    width: 360px;
+    outline: 1px solid green;
+    border-radius: 20px;
+    background-color: rgb(173, 173, 173);
+    padding: 10px;
+}
+
+.openmodal {
+    background-color: rgb(106, 216, 130);
+    padding: 20px;
+    margin: 0 auto;
+    border: none;
+    display: block;
+    text-transform: capitalize;
+    font-size: 20px;
+}
+
+.deletebtn {
+    background-color: red;
+    padding: 20px;
+    /* margin: 0 auto; */
+    border: none;
+    display: block;
+    text-transform: capitalize;
+    font-size: 20px;
+}
+
+.changeBtn {
+    background-color: yellow;
+    padding: 20px;
+    /* margin: 0 auto; */
+    border: none;
+    display: block;
+    text-transform: capitalize;
+    font-size: 20px;
+}
