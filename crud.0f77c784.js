@@ -716,7 +716,14 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 },{}],"2R06K":[function(require,module,exports,__globalThis) {
 var _getIce = require("./api/getIce");
 var _createItems = require("./markup/createItems");
+var _postIce = require("./api/postIce");
+var _deleteIce = require("./api/deleteIce");
+var _changeIce = require("./api/changeIce");
 const list = document.querySelector('.js-list');
+const openmodal = document.querySelector('.openmodal');
+const backdrop = document.querySelector('.backdrop');
+const form = document.querySelector('.form');
+const submitBtn = document.querySelector('.submitBtn');
 // console.log(createItems([]));
 function renderData() {
     (0, _getIce.getIce)().then((res)=>{
@@ -725,9 +732,56 @@ function renderData() {
     });
 // getIce
 }
-renderData(); // list.innerHTML = createItems(getIce);
+renderData();
+openmodal.addEventListener('click', (event)=>{
+    openModal();
+});
+form.addEventListener('submit', (event)=>{
+    event.preventDefault();
+    const element = event.currentTarget.elements;
+    const iceData = {
+        name: element.name.value,
+        type: element.type.value,
+        calories: element.calories.value,
+        price: element.price.value,
+        description: element.description.value,
+        image: element.image.value
+    };
+    (0, _postIce.postIce)(iceData).then((res)=>{
+        renderData();
+        closeModal();
+        form.reset();
+    });
+});
+function closeModal() {
+    backdrop.style.opacity = '0';
+    backdrop.style.pointerEvents = 'none';
+}
+function openModal() {
+    backdrop.style.opacity = '1';
+    backdrop.style.pointerEvents = 'auto';
+}
+list.addEventListener('click', (event)=>{
+    // console.log(event.target);
+    if (event.target.classList[0] === 'deletebtn') {
+        const id = event.target.closest('li').id;
+        (0, _deleteIce.delIce)(id).then((res)=>{
+            renderData();
+        });
+    }
+    if (event.target.classList[0] === 'changeBtn') {
+        const li = event.target.closest('li');
+        form.elements.name.value = li.querySelector('h3').textContent;
+        form.elements.type.value = li.querySelectorAll('p')[0].textContent;
+        form.elements.calories.value = li.querySelectorAll('p')[1].textContent;
+        form.elements.price.value = li.querySelectorAll('p')[2].textContent;
+        form.elements.description.value = li.querySelectorAll('p')[3].textContent;
+        form.elements.image.value = li.querySelector('img').src;
+        openModal();
+    }
+}); // list.innerHTML = createItems(getIce);
 
-},{"./api/getIce":"8HIuF","./markup/createItems":"9PAsU"}],"8HIuF":[function(require,module,exports,__globalThis) {
+},{"./api/getIce":"8HIuF","./markup/createItems":"9PAsU","./api/postIce":"kqE50","./api/deleteIce":"gvlF3","./api/changeIce":"hvNsl"}],"8HIuF":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "getIce", ()=>getIce);
@@ -782,6 +836,47 @@ const createItems = (array)=>{
                 <button class="changeBtn" type="button">change</button>
             </li>`;
     }).join('');
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"kqE50":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "postIce", ()=>postIce);
+const postIce = (data)=>{
+    const options = {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+            "Content-Type": "application/json; charset=UTF-8"
+        }
+    };
+    return fetch(`http://localhost:3000/iceCreams`, options).then((res)=>res.json());
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"gvlF3":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "delIce", ()=>delIce);
+const delIce = (id)=>{
+    const options = {
+        method: "DELETE"
+    };
+    return fetch(`http://localhost:3000/iceCreams/${id}`, options).then((res)=>res.json());
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"hvNsl":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "changeIce", ()=>changeIce);
+const changeIce = (id, data)=>{
+    const options = {
+        method: "PATCH",
+        body: JSON.stringify(data),
+        headers: {
+            "Content-Type": "application/json; charset=UTF-8"
+        }
+    };
+    return fetch(`http://localhost:3000/iceCreams/${id}`, options).then((res)=>res.json());
 };
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}]},["7wZbQ","2R06K"], "2R06K", "parcelRequirea17c", {})
