@@ -59,3 +59,61 @@ li {
     text-transform: capitalize;
     font-size: 20px;
 }
+
+.backdrop {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.342);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    
+}
+
+.modal {
+    width: 500px;
+    /* height: 300px; */
+    background-color: white;
+    padding: 50px;
+    border-radius: 20px;
+    position: relative;
+
+}
+
+
+input {
+    display: block;
+    width: 100% - 20px;
+    height: 50px;
+    padding-left: 20px;
+
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.submitBtn {
+    color: grey;
+    width: 100px;
+    height: 75px;
+    border: none;
+    border-radius: 20px;
+    display: block;
+    margin: 0 auto;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    background-color: transparent;
+}

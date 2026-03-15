@@ -1,15 +1,6 @@
 {
   "iceCreams": [
     {
-      "id": "1",
-      "name": "Ванільне",
-      "type": "класичне",
-      "calories": 207,
-      "price": 35,
-      "description": "Ніжне класичне морозиво з натуральною ваніллю.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/I_scream_You_Scream_%28Unsplash%29.jpg/250px-I_scream_You_Scream_%28Unsplash%29.jpg"
-    },
-    {
       "id": "2",
       "name": "Шоколадне",
       "type": "класичне",
@@ -55,24 +46,6 @@
       "image": "https://cooking-img.nv.ua/cooking/recipe/18447/niwyTf4ae6.webp?q=85&w=778"
     },
     {
-      "id": "7",
-      "name": "Манго сорбет",
-      "type": "сорбет",
-      "calories": 160,
-      "price": 37,
-      "description": "Легкий сорбет з натурального стиглого манго.",
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScnzivNBL34_W3gZSTVybVxviRnisJv_QTYQ&s"
-    },
-    {
-      "id": "8",
-      "name": "Чорниця-йогурт",
-      "type": "йогуртове",
-      "calories": 180,
-      "price": 39,
-      "description": "Натуральний йогурт з чорничним пюре та легкою кислинкою.",
-      "image": "https://images.unian.net/photos/2017_01/thumb_files/800_0_1483703699-6646.jpg"
-    },
-    {
       "id": "9",
       "name": "Бананове",
       "type": "фруктове",
@@ -89,6 +62,24 @@
       "price": 43,
       "description": "Морозиво на основі кокосового молока з ароматом тропіків.",
       "image": "https://lifestyle-ua.com/wp-content/uploads/2023/05/morozyvo-z-dostupnyh-produktiv9.webp"
+    },
+    {
+      "name": "mixed icecream",
+      "type": "sweet",
+      "calories": "a lot",
+      "price": "50 cents",
+      "description": "really delicious icream",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJLi6iEW35sgVS9TS2sawXQ9m7tofvngQi7w&s",
+      "id": "GWb0kYK"
+    },
+    {
+      "name": "Шоколадне",
+      "type": "type: класичне",
+      "calories": "calories: 220",
+      "price": "price: 39",
+      "description": "description: Насичений шоколадний смак з какао преміум якості.",
+      "image": "https://zamorozka24.com.ua/image/cache/catalog/morozyvo/limo-new/Morozhenoe-eskymo-Bezlaktoznoe-Vanyl-v-kon%20dyterskoj-glaz%20ury-10-v-70g-g%20-Torgovaya-marka-Limo-2-756x800.png",
+      "id": "9cBd70g"
     }
   ]
 }
