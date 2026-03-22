@@ -1,33 +1,6 @@
 {
   "iceCreams": [
     {
-      "id": "2",
-      "name": "Шоколадне",
-      "type": "класичне",
-      "calories": 220,
-      "price": 38,
-      "description": "Насичений шоколадний смак з какао преміум якості.",
-      "image": "https://zamorozka24.com.ua/image/cache/catalog/morozyvo/limo-new/Morozhenoe-eskymo-Bezlaktoznoe-Vanyl-v-kon%20dyterskoj-glaz%20ury-10-v-70g-g%20-Torgovaya-marka-Limo-2-756x800.png"
-    },
-    {
-      "id": "3",
-      "name": "apple",
-      "type": "type: ягідне",
-      "calories": "calories: 195",
-      "price": "price: 36",
-      "description": "description: Морозиво з додаванням свіжої полуничної пюре.",
-      "image": "https://mountain.limited/wp-content/themes/mountain/assets/img/bg/iceCreamP.png"
-    },
-    {
-      "id": "5",
-      "name": "М'ятне з шоколадом",
-      "type": "комбіноване",
-      "calories": 210,
-      "price": 40,
-      "description": "Освіжаюча м'ята та хрусткі шматочки темного шоколаду.",
-      "image": "https://glavcom.ua/img/article/4224/28_main-v1498456913.jpg"
-    },
-    {
       "id": "6",
       "name": "Солона карамель",
       "type": "кремове",
@@ -46,24 +19,6 @@
       "image": "https://comments.ua/img/publications/5YnPxsuGLBfoOqib2j_d-12w_eaIFNI_.jpg"
     },
     {
-      "id": "10",
-      "name": "Кокосове",
-      "type": "екзотичне",
-      "calories": 215,
-      "price": 43,
-      "description": "Морозиво на основі кокосового молока з ароматом тропіків.",
-      "image": "https://lifestyle-ua.com/wp-content/uploads/2023/05/morozyvo-z-dostupnyh-produktiv9.webp"
-    },
-    {
-      "name": "mixed icecream",
-      "type": "sweet",
-      "calories": "a lot",
-      "price": "50 cents",
-      "description": "really delicious icream",
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJLi6iEW35sgVS9TS2sawXQ9m7tofvngQi7w&s",
-      "id": "GWb0kYK"
-    },
-    {
       "name": "Шоколадне",
       "type": "type: класичне",
       "calories": "calories: 220",
@@ -80,15 +35,6 @@
       "description": "description: Морозиво з додаванням свіжої полуничної пюре.",
       "image": "https://mountain.limited/wp-content/themes/mountain/assets/img/bg/iceCreamP.png",
       "id": "zyxDlEH"
-    },
-    {
-      "name": "rew",
-      "type": "dfghj",
-      "calories": "12",
-      "price": "54",
-      "description": "hg",
-      "image": "https://zamorozka24.com.ua/image/cache/catalog/morozyvo/limo-new/Morozhenoe-eskymo-Bezlaktoznoe-Vanyl-v-kon%20dyterskoj-glaz%20ury-10-v-70g-g%20-Torgovaya-marka-Limo-2-756x800.png",
-      "id": "uJJQvg6"
     }
   ]
 }
