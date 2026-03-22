@@ -714,6 +714,84 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"2R06K":[function(require,module,exports,__globalThis) {
+// import { getIce } from "./api/getIce";
+// import { createItems } from "./markup/createItems";
+// import { postIce } from "./api/postIce";
+// import { delIce } from "./api/deleteIce";
+// import { changeIce } from "./api/changeIce";
+// const list = document.querySelector('.js-list');
+// const openmodal = document.querySelector('.openmodal');
+// const backdrop = document.querySelector('.backdrop');
+// const form = document.querySelector('.form');
+// const submitBtn = document.querySelector('.submitBtn');
+// // console.log(createItems([]));
+// let currentId = null;
+// function renderData() {
+//     getIce().then(res => {
+//         list.innerHTML = createItems(res);
+//         // return
+//     });
+//     // getIce
+// }
+// renderData();
+// openmodal.addEventListener('click', event => {
+//     openModal();
+// });
+// form.addEventListener('submit', event => {
+//     event.preventDefault();
+//     const element = event.currentTarget.elements;
+//     const iceData = {
+//         name: element.name.value,
+//         type: element.type.value,
+//         calories: element.calories.value,
+//         price: element.price.value,
+//         description: element.description.value,
+//         image: element.image.value,
+//     }
+//     if (currentId === null) {
+//         postIce(iceData).then(res => {
+//             renderData();
+//             closeModal();
+//             form.reset();
+//         });
+//     } else {
+//         changeIce(currentId, iceData).then(res => {
+//             renderData();
+//             closeModal();
+//             form.reset();
+//         });
+//     }
+// });
+// function closeModal() {
+//     backdrop.style.opacity = '0';
+//     backdrop.style.pointerEvents = 'none';
+// }
+// function openModal() {
+//     backdrop.style.opacity = '1';
+//     backdrop.style.pointerEvents = 'auto';
+// }
+// list.addEventListener('click', event => {
+//     // console.log(event.target);
+//     if (event.target.classList[0] === 'deletebtn') {
+//         const id = event.target.closest('li').id;
+//         delIce(id).then(res => {
+//             renderData();
+//         })
+//     }
+//     if (event.target.classList[0] === 'changeBtn') {
+//         const li = event.target.closest('li');
+//         const id = event.target.closest('li').id;
+//         currentId = id;
+//         form.elements.name.value = li.querySelector('h3').textContent;
+//         form.elements.type.value = li.querySelectorAll('p')[0].textContent;
+//         form.elements.calories.value = li.querySelectorAll('p')[1].textContent;
+//         form.elements.price.value = li.querySelectorAll('p')[2].textContent;
+//         form.elements.description.value = li.querySelectorAll('p')[3].textContent;
+//         form.elements.image.value = li.querySelector('img').src;
+//         openModal();
+//     }
+// });
+// // list.innerHTML = createItems(getIce);
 var _getIce = require("./api/getIce");
 var _createItems = require("./markup/createItems");
 var _postIce = require("./api/postIce");
@@ -725,18 +803,21 @@ const backdrop = document.querySelector('.backdrop');
 const form = document.querySelector('.form');
 const submitBtn = document.querySelector('.submitBtn');
 // console.log(createItems([]));
-function renderData() {
-    (0, _getIce.getIce)().then((res)=>{
-        list.innerHTML = (0, _createItems.createItems)(res);
-    // return
-    });
+let currentId = null;
+async function renderData() {
+    // getIce().then(res => {
+    //     list.innerHTML = createItems(res);
+    //     // return
+    // });
+    const res = await (0, _getIce.getIce)();
+    list.innerHTML = (0, _createItems.createItems)(res);
 // getIce
 }
 renderData();
 openmodal.addEventListener('click', (event)=>{
     openModal();
 });
-form.addEventListener('submit', (event)=>{
+form.addEventListener('submit', async (event)=>{
     event.preventDefault();
     const element = event.currentTarget.elements;
     const iceData = {
@@ -747,11 +828,27 @@ form.addEventListener('submit', (event)=>{
         description: element.description.value,
         image: element.image.value
     };
-    (0, _postIce.postIce)(iceData).then((res)=>{
+    if (currentId === null) {
+        // postIce(iceData).then(res => {
+        // renderData();
+        // closeModal();
+        // form.reset();
+        // });
+        await (0, _postIce.postIce)(iceData);
         renderData();
         closeModal();
         form.reset();
-    });
+    } else {
+        // changeIce(currentId, iceData).then(res => {
+        //     renderData();
+        //     closeModal();
+        //     form.reset();
+        // });
+        await (0, _changeIce.changeIce)(currentId, iceData);
+        renderData();
+        closeModal();
+        form.reset();
+    }
 });
 function closeModal() {
     backdrop.style.opacity = '0';
@@ -761,16 +858,20 @@ function openModal() {
     backdrop.style.opacity = '1';
     backdrop.style.pointerEvents = 'auto';
 }
-list.addEventListener('click', (event)=>{
+list.addEventListener('click', async (event)=>{
     // console.log(event.target);
     if (event.target.classList[0] === 'deletebtn') {
         const id = event.target.closest('li').id;
-        (0, _deleteIce.delIce)(id).then((res)=>{
-            renderData();
-        });
+        // delIce(id).then(res => {
+        //     renderData();
+        // })
+        await (0, _deleteIce.delIce)(id);
+        renderData();
     }
     if (event.target.classList[0] === 'changeBtn') {
         const li = event.target.closest('li');
+        const id = event.target.closest('li').id;
+        currentId = id;
         form.elements.name.value = li.querySelector('h3').textContent;
         form.elements.type.value = li.querySelectorAll('p')[0].textContent;
         form.elements.calories.value = li.querySelectorAll('p')[1].textContent;
@@ -782,11 +883,15 @@ list.addEventListener('click', (event)=>{
 }); // list.innerHTML = createItems(getIce);
 
 },{"./api/getIce":"8HIuF","./markup/createItems":"9PAsU","./api/postIce":"kqE50","./api/deleteIce":"gvlF3","./api/changeIce":"hvNsl"}],"8HIuF":[function(require,module,exports,__globalThis) {
+// export const getIce = () => {
+//     return fetch(`http://localhost:3000/iceCreams`).then(res => res.json());
+// }
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "getIce", ()=>getIce);
-const getIce = ()=>{
-    return fetch(`http://localhost:3000/iceCreams`).then((res)=>res.json());
+const getIce = async ()=>{
+    const res = await fetch(`http://localhost:3000/iceCreams`);
+    return await res.json();
 };
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"jnFvT":[function(require,module,exports,__globalThis) {
@@ -839,10 +944,20 @@ const createItems = (array)=>{
 };
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"kqE50":[function(require,module,exports,__globalThis) {
+// export const postIce = (data) => {
+//     const options = {
+//         method: "POST",
+//         body: JSON.stringify(data),
+//         headers: {
+//             "Content-Type": "application/json; charset=UTF-8",
+//         },
+//     };
+//     return fetch(`http://localhost:3000/iceCreams`, options).then(res => res.json());
+// }
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "postIce", ()=>postIce);
-const postIce = (data)=>{
+const postIce = async (data)=>{
     const options = {
         method: "POST",
         body: JSON.stringify(data),
@@ -850,25 +965,43 @@ const postIce = (data)=>{
             "Content-Type": "application/json; charset=UTF-8"
         }
     };
-    return fetch(`http://localhost:3000/iceCreams`, options).then((res)=>res.json());
+    const res = await fetch(`http://localhost:3000/iceCreams`, options);
+    return await res.json();
 };
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"gvlF3":[function(require,module,exports,__globalThis) {
+// export const delIce = (id) => {
+//     const options = {
+//         method: "DELETE",
+//     };
+//     return fetch(`http://localhost:3000/iceCreams/${id}`, options).then(res => res.json());
+// }
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "delIce", ()=>delIce);
-const delIce = (id)=>{
+const delIce = async (id)=>{
     const options = {
         method: "DELETE"
     };
-    return fetch(`http://localhost:3000/iceCreams/${id}`, options).then((res)=>res.json());
+    const res = await fetch(`http://localhost:3000/iceCreams/${id}`, options);
+    return await res.json();
 };
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"hvNsl":[function(require,module,exports,__globalThis) {
+// export const changeIce = (id, data) => {
+//     const options = {
+//         method: "PATCH",
+//         body: JSON.stringify(data),
+//         headers: {
+//             "Content-Type": "application/json; charset=UTF-8",
+//         },
+//     };
+//     return fetch(`http://localhost:3000/iceCreams/${id}`, options).then(res => res.json());
+// }
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "changeIce", ()=>changeIce);
-const changeIce = (id, data)=>{
+const changeIce = async (id, data)=>{
     const options = {
         method: "PATCH",
         body: JSON.stringify(data),
@@ -876,7 +1009,8 @@ const changeIce = (id, data)=>{
             "Content-Type": "application/json; charset=UTF-8"
         }
     };
-    return fetch(`http://localhost:3000/iceCreams/${id}`, options).then((res)=>res.json());
+    const res = await fetch(`http://localhost:3000/iceCreams/${id}`, options);
+    return await res.json();
 };
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}]},["7wZbQ","2R06K"], "2R06K", "parcelRequirea17c", {})
