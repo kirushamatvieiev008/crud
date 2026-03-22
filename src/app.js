@@ -12,6 +12,9 @@ const submitBtn = document.querySelector('.submitBtn');
 
 // console.log(createItems([]));
 
+let currentId = null;
+
+
 function renderData() {
     getIce().then(res => {
         list.innerHTML = createItems(res);
@@ -39,11 +42,19 @@ form.addEventListener('submit', event => {
         description: element.description.value,
         image: element.image.value,
     }
-    postIce(iceData).then(res => {
-        renderData();
-        closeModal();
-        form.reset();
-    });
+    if (currentId === null) {
+        postIce(iceData).then(res => {
+            renderData();
+            closeModal();
+            form.reset();
+        });
+    } else {
+        changeIce(currentId, iceData).then(res => {
+            renderData();
+            closeModal();
+            form.reset();
+        });
+    }
 });
 
 
@@ -67,6 +78,9 @@ list.addEventListener('click', event => {
     }
     if (event.target.classList[0] === 'changeBtn') {
         const li = event.target.closest('li');
+        const id = event.target.closest('li').id;
+        currentId = id;
+
         form.elements.name.value = li.querySelector('h3').textContent;
         form.elements.type.value = li.querySelectorAll('p')[0].textContent;
         form.elements.calories.value = li.querySelectorAll('p')[1].textContent;
